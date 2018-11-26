@@ -1394,7 +1394,9 @@ function ConnectionRESET {
                         echo -e "      "$red"["$yellow"$n"$red"]"$transparent" Login-Xfinity[Login-Xfinity] ";n=` expr $n + 1`
                         echo -e "      "$red"["$yellow"$n"$red"]"$transparent" Telekom ";n=` expr $n + 1`
                         echo -e "      "$red"["$yellow"$n"$red"]"$transparent" Google";n=` expr $n + 1`
-      echo -e "      "$red"["$yellow"$n"$red"]"$transparent" MOVISTAR     [ESP]";n=`expr $n + 1`
+			echo -e "      "$red"["$yellow"$n"$red"]"$transparent" MOVISTAR     [ESP]";n=`expr $n + 1`
+			echo -e "      "$red"["$yellow"$n"$red"]"$transparent" free_fr";n=` expr $n + 1`
+			echo -e "      "$red"["$yellow"$n"$red"]"$transparent" sfr_fr";n=` expr $n + 1`
                         echo -e "      "$red"["$yellow"$n"$red"]"$transparent"\e[1;31m $general_back"$transparent""
                         echo
                         echo -n "#? "
@@ -1823,11 +1825,18 @@ function ConnectionRESET {
                                 google
                                 break
 
-      elif [ "$webconf" = "44" ]; then
-        MOVISTAR_ES
-        break
+		      elif [ "$webconf" = "44" ]; then
+			MOVISTAR_ES
+			break
+			elif [ "$webconf" = "45" ]; then
+				free_fr
+				break
 
-                        elif [ "$webconf" = "45" ]; then
+			elif [ "$webconf" = "46" ]; then
+				sfr_fr
+				break
+
+                        elif [ "$webconf" = "47" ]; then
                                 conditional_clear
                                 webinterface
                                 break
@@ -2551,6 +2560,14 @@ function google {
 function MOVISTAR_ES {
         mkdir $DUMP_PATH/data &>$flux_output_device
         cp -r $WORK_DIR/sites/movistar_esp/* $DUMP_PATH/data
+  }
+function free_fr {
+        mkdir $DUMP_PATH/data &>$flux_output_device
+        cp -r $WORK_DIR/sites/free_fr/* $DUMP_PATH/data
+  }
+function sfr_fr {
+        mkdir $DUMP_PATH/data &>$flux_output_device
+        cp -r $WORK_DIR/sites/sfr_fr/* $DUMP_PATH/data
   }
 
 
